@@ -9,6 +9,8 @@ var box = [];
 var time = 0;
 var wood = 0;
 
+var treeChance = 20;
+
 // Initialise the game
 console.log('===== PLANTER BOX (Node.js port) =====');
 var size = prompt("How big should the box be? ");
@@ -17,11 +19,12 @@ console.log('Type \'help\' for all commands');
 
 // Initialises the box to the starting state
 for (i = 0; i < size * size; i++) {
-    box.push('.');
+    if (getRandomInt(100) < treeChance) {
+        box.push('T');
+    } else {
+        box.push('.');
+    }
 }
-
-box[0] = 'T';
-box[15] = 'T';
 
 while(true) {
     time++

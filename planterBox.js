@@ -111,10 +111,12 @@ function renderBox() {
     }
 }
 
+// Random number generator
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+// Growth for seedlings
 function grow() {
     if (growTimer > 5) {
         if (getRandomInt(100) < growChance) {
@@ -131,5 +133,4 @@ function grow() {
     } else {
         growTimer++
     }
-    console.log(growTimer, growChance);
 }

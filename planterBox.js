@@ -14,7 +14,6 @@ var growChance = 30;
 // Initialise the game
 console.log('===== PLANTER BOX (Node.js port) =====');
 var size = prompt("How big should the box be? ");
-// var sqOrRec = prompt("Should it be square? (t/f) "); on hold
 console.log('Type \'help\' for all commands');
 
 // Initialises the box to the starting state
@@ -33,15 +32,18 @@ while(true) {
     // Handle User Input (Gameplay)
     var input = prompt('> ');
     if (input == 'help') {
+        console.log('===== Viewing Help Menu =====');
         console.log('help       - prints this menu');
         console.log('quit       - ends the game');
         console.log('----------------')
-        console.log('chop X Y   - remove a tree at point on the grid');
-        console.log('plant X Y  - plant tree at point on grid, requires seeds');
-        console.log('             and time to grow');
-        console.log('build X Y  - build a fence/house at point on grid');
-        console.log('time       - displays in-game time/turns');
-        console.log('inv        - displays all of your resources');
+        console.log('chop X Y       - remove a tree at point on the grid');
+        console.log('plant X Y      - plant tree at point on grid, requires seeds');
+        console.log('                 and time to grow');
+        console.log('build X Y f/h  - build a fence/house at point on grid');
+        console.log('                     - Fence requires 5 wood');
+        console.log('                     - House requires 15 wood');
+        console.log('time           - displays in-game time/turns');
+        console.log('inv            - displays all of your resources');
 
         console.log(`\n
 Additional note: 
@@ -86,6 +88,23 @@ The grid starts from 0 0, like this:
             console.log('No place to plant or no seeds');
         }
         time++
+    } else if (input.includes('build')) {
+        splitInput = input.split(' ', 4);   
+        let x = parseInt(splitInput[1]);
+        let y = parseInt(splitInput[2]);
+        let type = splitInput[3];
+        let i = x + size * y;
+
+        if (box[i] == '. ' && type == 'f' && wood >= 5) {
+            wood -= 5;
+            box[i] = '##';
+        } else if (box[i] == '. ' && type == 'h' && wood >= 15) {
+            wood -= 15;
+            box[i] = 'HH';
+        } else {
+            console.log('No place to build');
+        }
+
     } else if (input == 'time') {
         console.log(`The time is ${time}`);
     } else if (input == 'inv') {

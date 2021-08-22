@@ -33,8 +33,8 @@ while(true) {
     var input = prompt('> ');
     if (input == 'help') {
         console.log('===== Viewing Help Menu =====');
-        console.log('help       - prints this menu');
-        console.log('quit       - ends the game');
+        console.log('help           - prints this menu');
+        console.log('quit           - ends the game');
         console.log('----------------')
         console.log('chop X Y       - remove a tree at point on the grid');
         console.log('plant X Y      - plant tree at point on grid, requires seeds');
